@@ -83,7 +83,7 @@ def tweet():
         flash('Authorization error with Twitter.')
     else:
         flash('Successfully tweeted your tweet ')
-        flash resp.data
+        print resp.data
     return redirect(url_for('index'))
 
 
