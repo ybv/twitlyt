@@ -82,7 +82,8 @@ def tweet():
     elif resp.status == 401:
         flash('Authorization error with Twitter.')
     else:
-        flash('Successfully tweeted your tweet ID:')
+        flash('Successfully tweeted your tweet ')
+        flash resp.data
     return redirect(url_for('index'))
 
 
