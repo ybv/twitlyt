@@ -1,6 +1,6 @@
 from Flasktest import app
 from Flasktest.database import db_session
-from Flasktest.models import Entry
+from Flasktest.models import User
 from flask import Flask, request, session, g, redirect, url_for, \
 	abort, render_template, flash
 
