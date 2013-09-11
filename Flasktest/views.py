@@ -103,7 +103,7 @@ def logout():
     return redirect(request.referrer or url_for('index'))
 
 
-@app.route('/oauth-authorized')
+@app.route('/oauth-authorized/')
 @twitter.authorized_handler
 def oauth_authorized(resp):
     """Called after authorization.  After this function finished handling,
