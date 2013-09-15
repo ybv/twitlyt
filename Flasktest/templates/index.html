@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 {% block body %}
   <h2>Overview</h2>
+  <div class="col-lg-12 text-center v-center">
   {% if g.user %}
     <p>
       Hello {{ g.user.name }}!  Wanna tweet something?
@@ -9,21 +10,13 @@
         <input type=text name=tweet size=40>
         <input type=submit value="Tweet!">
     </form>
-    {% if tweets %}
-    <h3>Your Timeline</h3>
-    <ul>
-    {% for tweet in tweets %}
-      <li><a href="http://twitter.com/{{ tweet.user.screen_name
-        }}">{{ tweet.user.screen_name }}</a>: {{ tweet.text|urlize }}
-    {% endfor %}
-    </ul>
-    {% endif %}
   {% else %}
     <p>
-      Sign in to view your public timeline and to tweet from this
-      example application.
+      Sign in to tweet from this application.
     <p>
       <a href="{{ url_for('login') }}"><img src="{{
         url_for('static', filename='sign-in.png') }}" alt="sign in"></a>
+
   {% endif %}
+  </div>
 {% endblock %}

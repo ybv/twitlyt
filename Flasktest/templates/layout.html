@@ -76,21 +76,23 @@ font-family: HelveticaNeue-Light;
   
   	<br><br><br><br><br>
   	<ul class=navigation>
+  		<div class="col-lg-12 text-center v-center">
   <li><a href="{{ url_for('index') }}">overview</a>
   {% if g.user %}
   <li><a href="{{ url_for('logout') }}">sign out [{{ g.user.name }}]</a>
   {% else %}
-    <div class="col-lg-12 text-center v-center">
+    
       <a href="/login"><img src="{{ url_for('static', filename='img/signin.png') }}"onload="this.width/=3;"></a><br>
-  </div>
+
 
   {% endif %}
+    </div>
 </ul>
 {% for message in get_flashed_messages() %}
   <p class=message>{{ message }}
 {% endfor %}
 {% block body %}{% endblock %}
-  	
+
     		<br><br><br><br><br><br><br><br><br>
   
   	  <div class="row">
