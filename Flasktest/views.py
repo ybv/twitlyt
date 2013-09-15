@@ -83,7 +83,7 @@ def tweet():
         flash('Authorization error with Twitter.')
     else:
         flash('Successfully tweeted your tweet ')
-        print resp.data
+        for x in 
     return redirect(url_for('index'))
 
 
@@ -139,6 +139,6 @@ def oauth_authorized(resp):
     user.oauth_secret = resp['oauth_token_secret']
     db_session.commit()
 
-    session['user_id'] = user.id
+    session['user_id'] = user.user_id
     flash('You were signed in')
     return redirect(next_url)
