@@ -79,7 +79,7 @@ font-family: HelveticaNeue-Light;
   		<div class="col-lg-12 text-center v-center">
 
   {% if g.user %}
-  <li><a href="{{ url_for('logout') }}">sign out [{{ g.user.name }}]</a>
+  <a href="{{ url_for('logout') }}">sign out [{{ g.user.name }}]</a>
   {% else %}
     
       <a href="/login"><img src="{{ url_for('static', filename='img/signin.png') }}"onload="this.width/=3;"></a><br>
