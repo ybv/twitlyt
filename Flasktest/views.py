@@ -72,6 +72,7 @@ def tweet():
     if g.user is None:
         return redirect(url_for('login', next=request.url))
     status = request.form['tweet']
+    flash('status (ID: #%s)' %status)
     if not status:
         return redirect(url_for('index'))
     resp = twitter.post('statuses/update.json', data={
@@ -82,7 +83,7 @@ def tweet():
     elif resp.status == 401:
         flash('Authorization error with Twitter.')
     else:
-        flash('Successfully tweeted your tweet (ID: #%s)' % resp.data['user_id'])
+        flash('Successfully tweeted your tweet (ID: #%s)' % resp.status['user_id'])
     return redirect(url_for('index'))
 
 
