@@ -77,7 +77,7 @@ font-family: HelveticaNeue-Light;
   	
   	<ul class=navigation>
   		<div class="col-lg-12 text-center v-center">
-  <li><a href="{{ url_for('index') }}">overview</a>
+
   {% if g.user %}
   <li><a href="{{ url_for('logout') }}">sign out [{{ g.user.name }}]</a>
   {% else %}
@@ -88,9 +88,7 @@ font-family: HelveticaNeue-Light;
   {% endif %}
     </div>
 </ul>
-{% for message in get_flashed_messages() %}
-  <p class=message>{{ message }}
-{% endfor %}
+
 {% block body %}{% endblock %}
 
     		<br><br><br><br>
