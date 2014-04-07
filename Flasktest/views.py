@@ -5,7 +5,16 @@ from flask import Flask, request, session, g, redirect, url_for, \
 	abort, render_template, flash
 
 from flask_oauth import OAuth
-
+import string
+import fuzzy
+import itertools
+import random
+import re
+table = string.maketrans("","")
+soundex = fuzzy.Soundex(4)
+dmetaphone = fuzzy.DMetaphone(4)
+VOWELS = "aeiou"
+RE_VOWEL = re.compile("[%s]" % VOWELS)
 
 oauth = OAuth()
 twitter = oauth.remote_app('twitter',
@@ -65,13 +74,50 @@ def index():
                   'API calls or Twitter is overloaded.')
     return render_template('index.html', tweets=tweets)
 
+def split_str(str):
+    return str.split(" ");
+
+def rem_punc(str):
+    return str.translate(table, string.punctuation)
+
+def get_soundex_map(str):
+    soundex_map ={}
+    soundex_map[str] = soundex(str)
+    return soundex_map
+
+def get_dimeta_map(str):
+    dimeta_map ={}
+    if(len(str)>=2):
+        dimeta_map[str] = dmetaphone(str)
+    return dimeta_map
+
+def rem_viwels(word):#needs fix!
+    list =[]
+    for i in VOWELS:
+        list.append(word.translate(None, i))
+    return list
+
+def rev_sound(str):
+    sent =[]
+    for s in str:
+        min =len(s);
+        for i in rem_viwels(s):
+            if soundex(i) == soundex(s):
+                if(len(i)<min):
+                    min = len(i)
+                    min_ind = i
+                    sent.append(min_ind)
+    return ' '.join(s.lower() for s in sent)
+ 
 
 @app.route('/tweet', methods=['POST'])
 def tweet():
     """Calls the remote twitter API to create a new status update."""
     if g.user is None:
         return redirect(url_for('login', next=request.url))
-    status = request.form['tweet']
+    stat = request.form['tweet']
+    str_here = split_str(stat.strip())
+    status = rev_sound(str_here)
     flash('status (ID: #%s)' %status)
     if not status:
         return redirect(url_for('index'))
