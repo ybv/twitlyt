@@ -92,9 +92,10 @@ def get_dimeta_map(str):
     return dimeta_map
 
 def rem_viwels(word):#needs fix!
+    st = word.encode('ascii','ignore')
     list =[]
     for i in VOWELS:
-        list.append(word.translate(None, i))
+        list.append(st.translate(None, i))
     return list
 
 def rev_sound(str):
