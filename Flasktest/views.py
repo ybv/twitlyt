@@ -135,7 +135,8 @@ def tweet():
     if not status:
         return redirect(url_for('index'))
     resp = twitter.post('statuses/update.json', data={
-        'status':       status
+        'status':       status,
+        'include_entities': true
     })
     if resp.status == 403:
         flash('Your tweet was too long.')
