@@ -120,7 +120,6 @@ def result(sentence):
     res=""
     for s in split_str(sentence):
         res += dict[s] + " "
-    print dict
     return res
  
 
@@ -131,8 +130,7 @@ def tweet():
         return redirect(url_for('login', next=request.url))
     stat = request.form['tweet']
     str_here = result(stat.strip())
-    status = rev_sound(str_here)
-    flash('status (ID: #%s)' %status)
+    flash('status (ID: #%s)' %str_here)
     if not status:
         return redirect(url_for('index'))
     resp = twitter.post('statuses/update.json', data={
