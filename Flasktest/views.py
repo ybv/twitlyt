@@ -10,10 +10,12 @@ import fuzzy
 import itertools
 import random
 import re
+from itertools import groupby
+
 table = string.maketrans("","")
 soundex = fuzzy.Soundex(4)
 dmetaphone = fuzzy.DMetaphone(4)
-VOWELS = "aeiou"
+VOWELS = "aeiouy"
 RE_VOWEL = re.compile("[%s]" % VOWELS)
 
 oauth = OAuth()
