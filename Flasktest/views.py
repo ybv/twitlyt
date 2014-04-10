@@ -80,16 +80,9 @@ def split_str(str):
 def rem_punc(str):
     return str.translate(table, string.punctuation)
 
-def get_soundex_map(str):
-    soundex_map ={}
-    soundex_map[str] = soundex(str)
-    return soundex_map
-
-def get_dimeta_map(str):
-    dimeta_map ={}
-    if(len(str)>=2):
-        dimeta_map[str] = dmetaphone(str)
-    return dimeta_map
+def rem_consec_dupz(str):
+    unique = (i[0] for i in groupby(str))
+    return ''.join(unique)
 
 def rem_viwels(word):#needs fix!
     st = word.encode('ascii','ignore')
@@ -98,17 +91,39 @@ def rem_viwels(word):#needs fix!
         list.append(st.translate(None, i))
     return list
 
-def rev_sound(str):
-    sent =[]
-    for s in str:
-        min =len(s);
-        for i in rem_viwels(s):
-            if soundex(i) == soundex(s):
-                if(len(i)<min):
-                    min = len(i)
-                    min_ind = i
-                    sent.append(min_ind)
-    return ' '.join(s.lower() for s in sent)
+def rev_sound(s):
+    min =len(s);
+    for i in rem_viwels(s):
+        if soundex(i) == soundex(s):
+            if(len(i)<min):
+                min = len(i)
+                min_ind = i
+    return min_ind
+
+sentence = "penalize"
+dict = {}
+def pre_proc_rules(str):
+    str = str.lower()
+    if re.search('@[a-z0-9_-]+', str, re.IGNORECASE):
+        dict[str]=str
+    elif re.search('http://', str, re.IGNORECASE):
+        dict[str]=str
+    elif re.search('https://', str, re.IGNORECASE):
+        dict[str]=str
+    else:
+        if(len(str)<=2):
+            dict[str]=str
+        else:
+            str_no_dupz = rem_consec_dupz(str)
+            dict[str]=rev_sound(str_no_dupz)
+
+def result(sentence):
+    for s in split_str(sentence):
+        pre_proc_rules(s);
+    res=""
+    for s in split_str(sentence):
+        res += dict[s.lower()] + " "
+    return res.lower()
  
 
 @app.route('/tweet', methods=['POST'])
@@ -117,7 +132,7 @@ def tweet():
     if g.user is None:
         return redirect(url_for('login', next=request.url))
     stat = request.form['tweet']
-    str_here = split_str(stat.strip())
+    str_here = result(stat.strip())
     status = rev_sound(str_here)
     flash('status (ID: #%s)' %status)
     if not status:
