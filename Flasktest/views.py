@@ -96,7 +96,7 @@ def rev_sound(s):
             if(len(i)<min):
                 min = len(i)
                 min_ind = i
-    return min_ind
+    return min_ind.lower()
 
 sentence = "penalize"
 dict = {}
@@ -109,18 +109,18 @@ def pre_proc_rules(str):
         dict[str]=str
     else:
         if(len(str)<=2):
-            dict[str.lower()]=str.lower()
+            dict[str]=str
         else:
             str_no_dupz = rem_consec_dupz(str)
-            dict[str.lower()]=rev_sound(str_no_dupz)
+            dict[str]=rev_sound(str_no_dupz)
 
 def result(sentence):
     for s in split_str(sentence):
         pre_proc_rules(s);
     res=""
     for s in split_str(sentence):
-        res += dict[s.lower()] + " "
-    return res.lower()
+        res += dict[s] + " "
+    return res
  
 
 @app.route('/tweet', methods=['POST'])
