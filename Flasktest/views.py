@@ -91,6 +91,7 @@ def rem_viwels(word):#needs fix!
 
 def rev_sound(s):
     min =len(s);
+    min_ind = s
     for i in rem_viwels(s):
         if soundex(i) == soundex(s):
             if(len(i)<min):
