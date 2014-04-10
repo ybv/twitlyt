@@ -105,7 +105,6 @@ def rev_sound(s):
 sentence = "penalize"
 dict = {}
 def pre_proc_rules(str):
-    str = str.lower()
     if re.search('@[a-z0-9_-]+', str, re.IGNORECASE):
         dict[str]=str
     elif re.search('http://', str, re.IGNORECASE):
@@ -114,10 +113,10 @@ def pre_proc_rules(str):
         dict[str]=str
     else:
         if(len(str)<=2):
-            dict[str]=str
+            dict[str.lower()]=str.lower()
         else:
             str_no_dupz = rem_consec_dupz(str)
-            dict[str]=rev_sound(str_no_dupz)
+            dict[str.lower()]=rev_sound(str_no_dupz)
 
 def result(sentence):
     for s in split_str(sentence):
