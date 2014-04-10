@@ -5,14 +5,11 @@ from flask import Flask, request, session, g, redirect, url_for, \
 	abort, render_template, flash
 
 from flask_oauth import OAuth
-import string
 import fuzzy
 import itertools
-import random
 import re
 from itertools import groupby
 
-table = string.maketrans("","")
 soundex = fuzzy.Soundex(4)
 dmetaphone = fuzzy.DMetaphone(4)
 VOWELS = "aeiouy"
@@ -87,10 +84,9 @@ def rem_consec_dupz(str):
     return ''.join(unique)
 
 def rem_viwels(word):#needs fix!
-    st = word.encode('ascii','ignore')
     list =[]
     for i in VOWELS:
-        list.append(st.translate(None, i))
+        list.append(word.replace(i, ''))
     return list
 
 def rev_sound(s):
