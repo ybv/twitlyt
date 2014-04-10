@@ -98,7 +98,7 @@ def rev_sound(s):
                 min_ind = i
     return min_ind.lower()
 
-sentence = "penalize"
+
 dict = {}
 def pre_proc_rules(str):
     if re.search('@[a-z0-9_-]+', str, re.IGNORECASE):
@@ -129,6 +129,7 @@ def tweet():
     if g.user is None:
         return redirect(url_for('login', next=request.url))
     stat = request.form['tweet']
+    print stat
     str_here = result(stat.strip())
     status = rev_sound(str_here)
     flash('status (ID: #%s)' %status)
