@@ -6,7 +6,7 @@
     Hello {{ g.user.name }}! 
   </p>
     <form class="tweet-input-form"action="{{ url_for('tweet') }}"  method=post>
-      <textarea class="tweet-input-form" type=text name=tweet size=40> </textarea>
+      <textarea class="tweet-input-form" type=text name=tweet placeholder="Try entering some text , @mentions or links"> </textarea>
       <br>
       <a href="#" onclick="$(this).closest('form').submit(); return false;"><img src="{{ url_for('static', filename='img/tweet.png') }}" width="150px"></a>
     </form>
