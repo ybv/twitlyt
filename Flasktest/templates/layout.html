@@ -6,20 +6,33 @@
 <link rel="stylesheet" type="text/css" href="pure-min.css">
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/pure-min.css') }}">
-<link href='http://fonts.googleapis.com/css?family=Raleway:300' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
 <style type="text/css">
+.container{
+  text-align: center;
+}
+.hero{
+  padding-top: 100px;
+}
 
+.hero p{
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+}
+.lead{
+  padding: 10px;
+}
 </style>
 </head>
 <body>
 
-<div class="pure-g-r">
+<div class="pure-g-r container">
   <div class="pure-u-1 hero text-center">
     <img src="{{ url_for('static', filename='img/twitlyt.png') }}" />
     <p class ="lead" > Twitlyt simplifies the way you tweet by shortening them to fit in 140 characters. </p>
   </div>
   <div  class="pure-u-1 tweet-dabba">
-    <div class="col-lg-12 text-center v-center">
+    <div class="text-center v-center">
       {% if g.user %}
         <a href="{{ url_for('logout') }}"><span>( </span> sign out [{{ g.user.name }}] <span> )</span></a>
       {% else %}
@@ -39,4 +52,5 @@
 </div>
 </div> <!-- /container full -->
 </body>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 </html>

@@ -7,7 +7,7 @@
   </p>
     <form class="tweet-input-form"action="{{ url_for('tweet') }}"  method=post>
       <input class="tweet-input-form" type=text name=tweet size=40>
-      <input class="submit-button" type=submit value="Tweet!">
+      <a href="#" onclick="$(this).closest('form').submit(); return false;">Submit</a>
     </form>
 
   {% endif %}
