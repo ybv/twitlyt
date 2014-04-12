@@ -8,7 +8,7 @@
     <form class="tweet-input-form"action="{{ url_for('tweet') }}"  method=post>
       <textarea class="tweet-input-form" type=text name=tweet size=40> </textarea>
       <br>
-      <a href="#" onclick="$(this).closest('form').submit(); return false;"><img src="{{ url_for('static', filename='img/tweet.png') }}"></a>
+      <a href="#" onclick="$(this).closest('form').submit(); return false;"><img src="{{ url_for('static', filename='img/tweet.png') }}" width="150px"></a>
     </form>
   {% endif %}
 </div>

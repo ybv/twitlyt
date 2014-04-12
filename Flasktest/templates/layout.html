@@ -45,9 +45,9 @@
   <div  class="pure-u-1 tweet-dabba">
     <div class="text-center v-center">
       {% if g.user %}
-        <a href="{{ url_for('logout') }}"><img src="{{ url_for('static', filename='img/signout.png') }}"></a>
+        <a href="{{ url_for('logout') }}"><img src="{{ url_for('static', filename='img/singout.png') }}" width="150px"></a>
       {% else %}
-        <a href="/login"><img src="{{ url_for('static', filename='img/signin.png') }}"></a><br>
+        <a href="/login"><img src="{{ url_for('static', filename='img/signin.png') }}" width="150px"></a><br>
       {% endif %}
     </div>
   </div>
