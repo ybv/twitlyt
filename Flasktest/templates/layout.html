@@ -1,120 +1,42 @@
-<!doctype html>
-<title> Twitlyt </title> 
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css">
-<style>
-
- <style type="text/css">
-html,body {
-  height:100%;
-  /*font-family: 'Roboto Slab', serif;*/
-}
-
-h1 {
-  
-  font-size:120px;
-  position: center;
-  color:#DDCCEE;
-  margin-top: -10px;
-}
-
-.lead {
-  font-family: HelveticaNeue-UltraLight;
-  color:#89bcf5;
-  position: center;
-}
-
-h4 {
-font-family: HelveticaNeue-Light;
-}
-
-.container-full {
-  margin: 0 auto;
-  
-  width: 100%;
-  min-height:100%;
-  background-color:#EAFFFF;
-  color:#eee;
-  overflow:hidden;
-}
-
-.v-center {
-  margin-top:4%;
-}
-  
-.btn-large {
-   height: 56px;
-}
-.bottom{
-  
-  color:#c2c0c0;
-  position:fixed;
-       padding: 0 10px 0 10px;                 
-       left: 0px;
-       bottom: 0px;
-       width: 100%;
-}
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<head>
+<title> Twitlyt </title>
+<link rel="stylesheet" type="text/css" href="pure-min.css">
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/pure-min.css') }}">
+<link href='http://fonts.googleapis.com/css?family=Raleway:300' rel='stylesheet' type='text/css'>
+<style type="text/css">
 
 </style>
-
 </head>
-
 <body>
 
-<div class="container-full">
-
-      <div class="row">
-       
-        <div class="col-lg-12 text-center v-center">
-          
-          <h1> <img src="{{ url_for('static', filename='img/twitlyt.png') }}"onload="this.width/=2;"></h1>
-
-          <p class ="lead" > Twitlyt simplifies the way you tweet by shortening them to fit in 140 characters. </p>
-
-       </div>
-        
-      </div>
-  
-  	
-  	<ul class=navigation>
-  		<div class="col-lg-12 text-center v-center">
-
-  {% if g.user %}
-  <a href="{{ url_for('logout') }}">sign out [{{ g.user.name }}]</a>
-  {% else %}
-    
-      <a href="/login"><img src="{{ url_for('static', filename='img/signin.png') }}"onload="this.width/=3;"></a><br>
-
-
-  {% endif %}
+<div class="pure-g-r">
+  <div class="pure-u-1 hero text-center">
+    <img src="{{ url_for('static', filename='img/twitlyt.png') }}" />
+    <p class ="lead" > Twitlyt simplifies the way you tweet by shortening them to fit in 140 characters. </p>
+  </div>
+  <div  class="pure-u-1 tweet-dabba">
+    <div class="col-lg-12 text-center v-center">
+      {% if g.user %}
+        <a href="{{ url_for('logout') }}"><span>( </span> sign out [{{ g.user.name }}] <span> )</span></a>
+      {% else %}
+        <a href="/login"><img src="{{ url_for('static', filename='img/signin.png') }}"></a><br>
+      {% endif %}
     </div>
-</ul>
+  </div>
 
 {% block body %}{% endblock %}
-
-    		<br><br><br><br>
-  
-  	  <div class="row">
-        <div class="col-lg-12 text-center">
-        <div class ="bottom">
-
-        
-        <a href="#">Follow @TwitlytApp on Twitter</a> &nbsp &nbsp ©Copyright 2013 Twitlyt<sup>TM</sup> 
-       
-
-          <br><br>
-          </div>
-        </div>
-      </div>
-  
-
+ 
+<div class="pure-u-1">
+  <div class="text-center">
+    <div class ="bottom">
+      <a href="#">Follow @TwitlytApp on Twitter</a>
+    </div>
+  </div>
+</div>
 </div> <!-- /container full -->
-
-
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js"></script>
-
-
 </body>
 </html>
-
-
-

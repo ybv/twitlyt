@@ -1,15 +1,15 @@
 {% extends "layout.html" %}
 {% block body %}
-  <div class="col-lg-12 text-center v-center">
+<div class="pure-u-1 text-center ">
   {% if g.user %}
-    <p>
-      Hello {{ g.user.name }}! 
-    <form action="{{ url_for('tweet') }}"  method=post>
-      <p>
-        <input type=text name=tweet size=40>
-        <input type=submit value="Tweet!">
+  <p>
+    Hello {{ g.user.name }}! 
+  </p>
+    <form class="tweet-input-form"action="{{ url_for('tweet') }}"  method=post>
+      <input class="tweet-input-form" type=text name=tweet size=40>
+      <input class="submit-button" type=submit value="Tweet!">
     </form>
-   
+
   {% endif %}
-  </div>
+</div>
 {% endblock %}
