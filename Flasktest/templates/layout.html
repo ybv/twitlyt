@@ -22,6 +22,17 @@
 .lead{
   padding: 10px;
 }
+.tweet-input-form textarea{
+  line-height: normal;
+  border: 1px solid #69cdff;
+  height: 72px;
+  border-radius: 15px;
+  width: 300px;
+}
+.welcome p{
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+}
 </style>
 </head>
 <body>
@@ -29,12 +40,12 @@
 <div class="pure-g-r container">
   <div class="pure-u-1 hero text-center">
     <img src="{{ url_for('static', filename='img/twitlyt.png') }}" />
-    <p class ="lead" > Twitlyt simplifies the way you tweet by shortening them to fit in 140 characters. </p>
+    <p class ="lead" > Twitlyt simplifies the way you tweet by shortening tweets to fit in 140 characters. </p>
   </div>
   <div  class="pure-u-1 tweet-dabba">
     <div class="text-center v-center">
       {% if g.user %}
-        <a href="{{ url_for('logout') }}"><span>( </span> sign out [{{ g.user.name }}] <span> )</span></a>
+        <a href="{{ url_for('logout') }}"><img src="{{ url_for('static', filename='img/signout.png') }}"></a>
       {% else %}
         <a href="/login"><img src="{{ url_for('static', filename='img/signin.png') }}"></a><br>
       {% endif %}

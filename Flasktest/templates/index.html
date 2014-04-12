@@ -1,15 +1,15 @@
 {% extends "layout.html" %}
 {% block body %}
-<div class="pure-u-1 text-center ">
+<div class="pure-u-1 welcome">
   {% if g.user %}
   <p>
     Hello {{ g.user.name }}! 
   </p>
     <form class="tweet-input-form"action="{{ url_for('tweet') }}"  method=post>
-      <input class="tweet-input-form" type=text name=tweet size=40>
-      <a href="#" onclick="$(this).closest('form').submit(); return false;">Submit</a>
+      <textarea class="tweet-input-form" type=text name=tweet size=40> </textarea>
+      <br>
+      <a href="#" onclick="$(this).closest('form').submit(); return false;"><img src="{{ url_for('static', filename='img/tweet.png') }}"></a>
     </form>
-
   {% endif %}
 </div>
 {% endblock %}
