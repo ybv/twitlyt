@@ -3,10 +3,10 @@
 <div class="pure-u-1 welcome">
   {% if g.user %}
   <p>
-    Hello {{ g.user.name }}!
+    Hello {{ g.user.name }}! 
   </p>
     <form class="tweet-input-form"action="{{ url_for('tweet') }}"  method=post>
-      <textarea class="tweet-input-form" type=text name=tweet> You can try @mentions, links too..</textarea>
+      <textarea class="tweet-input-form" type=text name=tweet placeholder="Try entering some text , @mentions or links"> </textarea>
       <br>
       <a href="#" onclick="$(this).closest('form').submit(); return false;"><img src="{{ url_for('static', filename='img/tweet.png') }}" width="150px"></a>
     </form>
