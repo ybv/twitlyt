@@ -121,7 +121,7 @@ def result(sentence):
     res=""
     for s in split_str(sentence):
         res += dict[s] + " "
-    print dict
+    res = res +"via @tlytw"
     return res
  
 
