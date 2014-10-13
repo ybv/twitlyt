@@ -2,8 +2,13 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 import os
+import ConfigParser
 
-uri = os.environ.get('DATABASE_URL', 'postgres://hxhebarhtwakjb:BqP0tr8Vwy8k3bhYjYW0fJHRMh@ec2-23-23-211-161.compute-1.amazonaws.com:5432/d4e678cmliti44')
+Config = ConfigParser.ConfigParser()
+Config.read("/etc/psycopg.conf")
+URI = Config.get("DB", "db-URI")
+
+uri = os.environ.get('DATABASE_URL', URI)
 engine = create_engine(uri, convert_unicode=True)
 db_session = scoped_session(sessionmaker(autocommit=False,
 					 autoflush=False,
